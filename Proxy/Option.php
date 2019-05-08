@@ -18,12 +18,12 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace Leevel\Option\Facade;
+namespace Leevel\Option\Proxy;
 
 use Leevel\Di\Container;
 
 /**
- * 门面 option.
+ * 代理 option.
  *
  * @author Xiangmin Liu <635750556@qq.com>
  *
