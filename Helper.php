@@ -18,21 +18,41 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace Leevel\Option\Helper;
+namespace Leevel\Option;
 
-use Leevel\Di\Container;
-use Leevel\Option\IOption;
+use function Leevel\Support\Str\un_camelize;
+use Leevel\Support\Str\un_camelize;
 
 /**
- * 配置服务
+ * 助手类.
  *
- * @return \Leevel\Option\IOption
+ * @author Xiangmin Liu <635750556@qq.com>
+ *
+ * @since 2019.08.21
+ *
+ * @version 1.0
  */
-function option(): IOption
+class Helper
 {
-    return Container::singletons()->make('option');
+    /**
+     * call.
+     *
+     * @param string $method
+     * @param array  $args
+     *
+     * @return mixed
+     */
+    public static function __callStatic(string $method, array $args)
+    {
+        $fn = __NAMESPACE__.'\\Helper\\'.un_camelize($method);
+
+        if (!function_exists($fn)) {
+            class_exists($fn);
+        }
+
+        return $fn(...$args);
+    }
 }
 
-class option
-{
-}
+// import fn.
+class_exists(un_camelize::class);
